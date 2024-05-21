@@ -1,4 +1,3 @@
-/* General Styles */
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f8ff;
@@ -11,17 +10,13 @@ body {
     flex-direction: column;
     height: 100vh;
 }
-
 h1 {
     color: #555;
 }
-
-/* Form Styles */
 form {
     margin-top: 20px;
     margin-bottom: 20px;
 }
-
 input[type="text"] {
     padding: 10px;
     border: 2px solid #b3cde0;
@@ -31,12 +26,10 @@ input[type="text"] {
     font-size: 16px;
     transition: border-color 0.3s;
 }
-
 input[type="text"]:focus {
     border-color: #6497b1;
     outline: none;
 }
-
 button {
     padding: 10px 15px;
     border: none;
@@ -47,12 +40,10 @@ button {
     cursor: pointer;
     transition: background-color 0.3s;
 }
-
 button:hover {
     background-color: #005b96;
 }
 
-/* Weather Info Styles */
 #weatherInfo, #forecast {
     width: 80%;
     max-width: 600px;
@@ -77,35 +68,30 @@ button:hover {
     justify-content: space-between;
     align-items: center;
 }
-
 .weather-card h3 {
     margin: 0;
     font-size: 18px;
     color: #555;
 }
-
 .weather-icon {
     width: 50px;
     height: 50px;
 }
-
 .weather-details {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
-
 .weather-details span {
     margin: 3px 0;
 }
 
-/* Forecast Styles */
+
 #forecast {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 10px;
 }
-
 .forecast-card {
     background-color: #d4e7f5;
     border-radius: 10px;
@@ -113,7 +99,6 @@ button:hover {
     padding: 10px;
     text-align: center;
 }
-
 .forecast-card h3 {
     margin: 0 0 10px;
     font-size: 16px;
