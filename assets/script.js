@@ -1,17 +1,17 @@
-const apiKey = '20b9333670326f5c59cab9a18010ac64';
-const geocodingUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=';
+const aKey = '20b9333670326f5c59cab9a18010ac64';
+const gurrrl = 'https://api.openweathermap.org/geo/1.0/direct?q=';
 const weatherUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=';
 
 document.getElementById('searchForm').addEventListener('submit', function(event) {
     event.preventDefault();
     const city = document.getElementById('cityInput').value.trim();
     if (city) {
-        getCityCoordinates(city);
+        cityCoords(city);
     }
 });
 
-function getCityCoordinates(city) {
-    fetch(`${geocodingUrl}${city}&appid=${apiKey}`)
+function cityCoords(city) {
+    fetch(`${gurrrl}${city}&appid=${aKey}`)
         .then(response => response.json())
         .then(data => {
             if (data.length > 0) {
@@ -25,16 +25,16 @@ function getCityCoordinates(city) {
 }
 
 function getWeather(lat, lon, city) {
-    fetch(`${weatherUrl}${lat}&lon=${lon}&appid=${apiKey}&units=metric`)
+    fetch(`${weatherUrl}${lat}&lon=${lon}&appid=${aKey}&units=metric`)
         .then(response => response.json())
         .then(data => {
-            displayWeather(data, city);
-            saveSearchHistory(city);
+            weatherInfo(data, city);
+            searchHistory(city);
         })
         .catch(error => console.error('Error fetching weather data:', error));
 }
 
-function displayWeather(data, city) {
+function weatherInfo(data, city) {
     const weatherInfo = document.getElementById('weatherInfo');
     const forecast = document.getElementById('forecast');
     
@@ -68,16 +68,16 @@ function displayWeather(data, city) {
     }
 }
 
-function saveSearchHistory(city) {
+function searchHistory(city) {
     let history = JSON.parse(localStorage.getItem('searchHistory')) || [];
     if (!history.includes(city)) {
         history.push(city);
         localStorage.setItem('searchHistory', JSON.stringify(history));
-        displaySearchHistory();
+        showSH();
     }
 }
 
-function displaySearchHistory() {
+function showSH() {
     const history = JSON.parse(localStorage.getItem('searchHistory')) || [];
     const historyContainer = document.getElementById('history');
     historyContainer.innerHTML = '';
@@ -85,10 +85,10 @@ function displaySearchHistory() {
     history.forEach(city => {
         const button = document.createElement('button');
         button.textContent = city;
-        button.addEventListener('click', () => getCityCoordinates(city));
+        button.addEventListener('click', () => cityCoords(city));
         historyContainer.appendChild(button);
     });
 }
 
 
-document.addEventListener('DOMContentLoaded', displaySearchHistory);
+document.addEventListener('DOMContentLoaded', showSH);
